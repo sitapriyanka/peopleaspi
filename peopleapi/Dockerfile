@@ -14,6 +14,8 @@ RUN dotnet publish -c Release -o out
 # build runtime image
 FROM microsoft/dotnet:2.2-aspnetcore-runtime
 RUN mkdir /app
+EXPOSE 5000 7000
+ENV ASPNETCORE_URLS=http://*:5000
 WORKDIR /app
 
 COPY --from=build-env /app/out ./
