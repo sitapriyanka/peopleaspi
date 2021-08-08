@@ -1,0 +1,119 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: peopleapi-svc
+  namespace: monitoring
+labels:
+  operated-prometheus: true  
+spec:
+  selector:
+    app: peopleapi
+    deploymentconfig: peopleapi
+  ports:
+    - protocol: TCP
+      port: 7000
+      targetPort: 7000
+      name: 7000-tcp
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      name: web
+---
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: peopleapi
+  namespace: monitoring
+spec:
+  selector:
+    app: peopleapi
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: peopleapi
+    spec:
+      containers:
+        - name: peopleapi
+          image: peddadas/testhpa-repo:peopleapi
+          ports:
+            - containerPort: 7000
+            - containerPort: 5000
+			
+----			
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  annotations:
+    meta.helm.sh/release-name: prometheus-adapter
+    meta.helm.sh/release-namespace: monitoring
+  selfLink: /api/v1/namespaces/monitoring/configmaps/prometheus-adapter
+  resourceVersion: '70360'
+  name: prometheus-adapter
+  uid: abac8698-a09d-42e4-9d10-a2905c876b10
+  creationTimestamp: '2021-08-01T04:25:39Z'
+  managedFields:
+    - manager: Go-http-client
+      operation: Update
+      apiVersion: v1
+      time: '2021-08-01T04:25:39Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data':
+          .: {}
+          'f:config.yaml': {}
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:meta.helm.sh/release-name': {}
+            'f:meta.helm.sh/release-namespace': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:app.kubernetes.io/managed-by': {}
+            'f:chart': {}
+            'f:heritage': {}
+            'f:release': {}
+  namespace: monitoring
+  labels:
+    app: prometheus-adapter
+    app.kubernetes.io/managed-by: Helm
+    chart: prometheus-adapter-2.15.2
+    heritage: Helm
+    release: prometheus-adapter
+data:
+  config.yaml: >
+    rules:
+
+    - seriesQuery:
+    'http_requests_received_total{namespace!="",pod!=""}'
+      seriesFilters: []
+      resources:
+        overrides:
+          namespace:
+            resource: namespace
+          pod:
+            resource: pod
+      name:
+        matches: "http_requests_received_total"
+        as: "http_requests_received_total_per_second"
+      metricsQuery: sum(rate(http_requests_received_total{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)
+	  
+ ----
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: peopleapi-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: DeploymentConfig
+    name: peopleapi
+  minReplicas: 3
+  maxReplicas: 15
+  metrics:
+  - type: Pods
+    pods:
+      metricName: http_requests_received_total_per_second
+      targetAverageValue: "500m"

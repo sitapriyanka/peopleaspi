@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: peopleapi-svcmonitor
+  labels: 
+  env: production  
+spec:
+  endpoints:
+    - port: 5000-tcp
+      interval: 15s
+  selector:
+    matchLabels:
+      app: peopleapi
+	  deploymentconfig: peopleapi

@@ -1,0 +1,85 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"route.openshift.io/v1","kind":"Route","metadata":{"annotations":{},"labels":{"app":"prometheus-operator","name":"prometheus-operator"},"name":"prometheus-operator-route","namespace":"test-hpa"},"spec":{"host":"prometheus-operator-test-hpa.apps.dev.aro.forgeapp.honeywell.com","port":{"targetPort":"9090-tcp"},"tls":{"insecureEdgeTerminationPolicy":"Redirect","termination":"edge"},"to":{"kind":"Service","name":"prometheus-operator-svc","weight":100}}}
+  selfLink: >-
+    /apis/route.openshift.io/v1/namespaces/test-hpa/routes/prometheus-operator-route
+  resourceVersion: '8000396'
+  name: prometheus-operator-route
+  uid: 84ab6d81-1d70-4a92-bc7c-c526e023e610
+  creationTimestamp: '2021-02-16T10:37:58Z'
+  managedFields:
+    - manager: oc
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2021-02-16T10:37:58Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:name': {}
+        'f:spec':
+          'f:host': {}
+          'f:port':
+            .: {}
+            'f:targetPort': {}
+          'f:tls':
+            .: {}
+            'f:insecureEdgeTerminationPolicy': {}
+            'f:termination': {}
+          'f:to':
+            'f:kind': {}
+            'f:name': {}
+            'f:weight': {}
+          'f:wildcardPolicy': {}
+    - manager: openshift-router
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2021-02-16T10:37:59Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:ingress': {}
+  namespace: test-hpa
+  labels:
+    app: prometheus-operator
+    name: prometheus-operator
+spec:
+  host: prometheus-operator-test-hpa.apps.dev.aro.forgeapp.honeywell.com
+  to:
+    kind: Service
+    name: prometheus-operator-svc
+    weight: 100
+  port:
+    targetPort: 9090-tcp
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: >-
+        prometheus-operator-test-hpa.apps.dev.aro.forgeapp.honeywell.com
+      routerName: public-ingress
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2021-02-16T10:37:58Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: apps-ext.dev.aro.forgeapp.honeywell.com
+    - host: >-
+        prometheus-operator-test-hpa.apps.dev.aro.forgeapp.honeywell.com
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2021-02-16T10:37:59Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: apps.dev.aro.forgeapp.honeywell.com

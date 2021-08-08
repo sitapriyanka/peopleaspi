@@ -1,0 +1,57 @@
+kind: Service
+apiVersion: v1
+metadata:
+  annotations:
+  selfLink: /api/v1/namespaces/test-hpa/services/prometheus-operator-svc
+  resourceVersion: '8000373'
+  name: prometheus-operator-svc
+  uid: 5173af4d-5e71-4897-8a57-dcc308463039
+  creationTimestamp: '2021-02-16T10:37:58Z'
+  managedFields:
+    - manager: oc
+      operation: Update
+      apiVersion: v1
+      time: '2021-02-16T10:37:58Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:name': {}
+        'f:spec':
+          'f:ports':
+            .: {}
+            'k:{"port":9090,"protocol":"TCP"}':
+              .: {}
+              'f:name': {}
+              'f:port': {}
+              'f:protocol': {}
+              'f:targetPort': {}
+          'f:selector':
+            .: {}
+            'f:app': {}
+            'f:deploymentconfig': {}
+          'f:sessionAffinity': {}
+          'f:type': {}
+  namespace: test-hpa
+  labels:
+    app: prometheus-operator
+    name: prometheus-operator-svc
+spec:
+  ports:
+    - name: 9090-tcp
+      protocol: TCP
+      port: 9090
+      targetPort: 9090
+  selector:
+    app: prometheus-operator
+    deploymentconfig: prometheus-operator
+  clusterIP: 172.30.53.28
+  type: ClusterIP
+  sessionAffinity: None
+status:
+  loadBalancer: {}

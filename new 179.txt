@@ -1,0 +1,382 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  annotations:
+  selfLink: >-
+    /apis/apps.openshift.io/v1/namespaces/test-hpa/deploymentconfigs/prometheus-operator
+  resourceVersion: '161676260'
+  name: prometheus-operator
+  uid: 3ea383fc-307f-4afb-8953-f21a32eea35d
+  creationTimestamp: '2021-02-16T10:37:58Z'
+  generation: 11
+  managedFields:
+    - manager: oc
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2021-02-17T10:54:51Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:name': {}
+        'f:spec':
+          'f:selector':
+            .: {}
+            'f:app': {}
+            'f:deploymentconfig': {}
+          'f:strategy':
+            'f:activeDeadlineSeconds': {}
+            'f:recreateParams':
+              .: {}
+              'f:timeoutSeconds': {}
+            'f:type': {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:creationTimestamp': {}
+              'f:labels':
+                .: {}
+                'f:app': {}
+                'f:deploymentconfig': {}
+            'f:spec':
+              'f:volumes':
+                .: {}
+                'k:{"name":"prometheus-operator-configmap-rule-volume"}':
+                  .: {}
+                  'f:configMap':
+                    .: {}
+                    'f:defaultMode': {}
+                    'f:name': {}
+                  'f:name': {}
+                'k:{"name":"prometheus-operator-configmap-volume"}':
+                  .: {}
+                  'f:configMap':
+                    .: {}
+                    'f:defaultMode': {}
+                    'f:name': {}
+                  'f:name': {}
+                'k:{"name":"prometheus-operator-pvc-volume"}':
+                  .: {}
+                  'f:name': {}
+                  'f:persistentVolumeClaim':
+                    .: {}
+                    'f:claimName': {}
+              'f:containers':
+                .: {}
+                'k:{"name":"kube-state-metrics"}':
+                  'f:image': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources': {}
+                  'f:args': {}
+                  'f:env':
+                    .: {}
+                    'k:{"name":"MY_POD_NAMESPACE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:fieldRef':
+                          .: {}
+                          'f:apiVersion': {}
+                          'f:fieldPath': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8080,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:protocol': {}
+                  'f:name': {}
+                'k:{"name":"prometheus-configmap-reload"}':
+                  'f:image': {}
+                  'f:volumeMounts':
+                    .: {}
+                    'k:{"mountPath":"/etc/prometheus"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                      'f:readOnly': {}
+                    'k:{"mountPath":"/etc/prometheus-rules"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                      'f:readOnly': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources': {}
+                  'f:args': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:name': {}
+                'k:{"name":"prometheus-operator"}':
+                  'f:image': {}
+                  'f:volumeMounts':
+                    .: {}
+                    'k:{"mountPath":"/etc/prometheus"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                    'k:{"mountPath":"/etc/prometheus-rules"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                    'k:{"mountPath":"/prometheus"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources':
+                    .: {}
+                    'f:limits':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                    'f:requests':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                  'f:args': {}
+                  'f:command': {}
+                  'f:env':
+                    .: {}
+                    'k:{"name":"MY_POD_NAMESPACE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:fieldRef':
+                          .: {}
+                          'f:apiVersion': {}
+                          'f:fieldPath': {}
+                    'k:{"name":"Name"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":9090,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:protocol': {}
+                  'f:name': {}
+              'f:dnsPolicy': {}
+              'f:serviceAccount': {}
+              'f:restartPolicy': {}
+              .: {}
+              'f:schedulerName': {}
+              'f:terminationGracePeriodSeconds': {}
+              'f:serviceAccountName': {}
+              'f:securityContext': {}
+          'f:triggers': {}
+    - manager: Mozilla
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2021-03-17T12:56:43Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:replicas': {}
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2021-06-28T01:06:24Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:updatedReplicas': {}
+          'f:readyReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:details':
+            .: {}
+            'f:causes': {}
+            'f:message': {}
+          'f:replicas': {}
+          'f:availableReplicas': {}
+          'f:observedGeneration': {}
+          'f:unavailableReplicas': {}
+          'f:latestVersion': {}
+  namespace: test-hpa
+  labels:
+    app: prometheus-operator
+    name: prometheus-operator
+spec:
+  strategy:
+    type: Recreate
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
+    activeDeadlineSeconds: 21600
+  triggers:
+    - type: ConfigChange
+  replicas: 1
+  revisionHistoryLimit: 10
+  test: false
+  selector:
+    app: prometheus-operator
+    deploymentconfig: prometheus-operator
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: prometheus-operator
+        deploymentconfig: prometheus-operator
+    spec:
+      restartPolicy: Always
+      serviceAccountName: prometheus-operator
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      containers:
+        - resources:
+            limits:
+              cpu: 800m
+              memory: 1000Mi
+            requests:
+              cpu: 800m
+              memory: 1000Mi
+          terminationMessagePath: /dev/termination-log
+          name: prometheus-operator
+          command:
+            - /bin/sh
+          env:
+            - name: Name
+              value: prometheus-operator
+            - name: MY_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+          ports:
+            - containerPort: 9090
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: prometheus-operator-configmap-volume
+              mountPath: /etc/prometheus
+            - name: prometheus-operator-pvc-volume
+              mountPath: /prometheus
+            - name: prometheus-operator-configmap-rule-volume
+              mountPath: /etc/prometheus-rules
+          terminationMessagePolicy: File
+          image: >-
+            prom/prometheus:latest
+          args:
+            - '-c'
+            - >-
+              sed -e "s/{{MY_POD_NAMESPACE}}/$MY_POD_NAMESPACE/"
+              </etc/prometheus/prometheus.yml.template >/tmp/prometheus.yml;
+              /bin/prometheus --config.file=/tmp/prometheus.yml
+              --web.listen-address=:9090 --web.enable-lifecycle
+              --web.console.templates=/usr/share/prometheus/consoles
+              --web.console.libraries=/usr/share/prometheus/console_libraries
+              --storage.tsdb.path=/prometheus --storage.tsdb.retention=180d
+              --storage.tsdb.min-block-duration=15m
+              --storage.tsdb.max-block-duration=120m
+        - name: prometheus-configmap-reload
+          image: 'docker.io/jimmidyson/configmap-reload:v0.4.0'
+          args:
+            - '--volume-dir=/etc/prometheus'
+            - '--volume-dir=/etc/prometheus-rules'
+            - '--webhook-url=http://localhost:9090/-/reload'
+          resources: {}
+          volumeMounts:
+            - name: prometheus-operator-configmap-volume
+              readOnly: true
+              mountPath: /etc/prometheus
+            - name: prometheus-operator-configmap-rule-volume
+              readOnly: true
+              mountPath: /etc/prometheus-rules
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: kube-state-metrics
+          env:
+            - name: MY_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          terminationMessagePolicy: File
+          image: >-
+            bitnami/kube-state-metrics:latest
+          args:
+            - '--namespace'
+            - $(MY_POD_NAMESPACE)
+            - '--collectors'
+            - >-
+              replicationcontrollers,persistentvolumeclaims,daemonsets,jobs,limitranges,replicasets,resourcequotas,services,deployments,statefulsets,pods,horizontalpodautoscalers
+            - '--port'
+            - '8080'
+            - '--telemetry-port'
+            - '8081'
+      serviceAccount: prometheus-operator
+      volumes:
+        - name: prometheus-operator-configmap-volume
+          configMap:
+            name: prometheus-operator-config
+            defaultMode: 420
+        - name: prometheus-operator-configmap-rule-volume
+          configMap:
+            name: prometheus-alert-rules-config
+            defaultMode: 420
+        - name: prometheus-operator-pvc-volume
+          persistentVolumeClaim:
+            claimName: prometheus-operator-pvc
+      dnsPolicy: ClusterFirst
+status:
+  observedGeneration: 11
+  details:
+    message: config change
+    causes:
+      - type: ConfigChange
+  availableReplicas: 1
+  unavailableReplicas: 0
+  latestVersion: 4
+  updatedReplicas: 1
+  conditions:
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2021-02-17T10:58:02Z'
+      lastTransitionTime: '2021-02-17T10:56:35Z'
+      reason: NewReplicationControllerAvailable
+      message: replication controller "prometheus-operator-4" successfully rolled out
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2021-06-28T01:06:24Z'
+      lastTransitionTime: '2021-06-28T01:06:24Z'
+      message: Deployment config has minimum availability.
+  replicas: 1
+  readyReplicas: 1
